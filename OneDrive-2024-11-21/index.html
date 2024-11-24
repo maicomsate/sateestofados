@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sate Estofados - A Limpeza que renova!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="61913244 (1).png" type="image/x-icon">
+    <style>
+        :root {
+            --primary-color: #71B095;
+            --secondary-color: #545454;
+            --accent-color: #FF6B6B;
+            --bg-color: #F8F9FA;
+            --text-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: relative;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        .hero {
+            background-image: url(img/sofa-capa.avif);
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: #ff8c8c;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .services, .about, .before-after, .contact {
+            padding: 6rem 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            width: calc(33.333% - 1rem);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .card.animate {
+            animation: fadeInUp 0.5s forwards;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .before-after-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .before-after-item {
+            width: 48%;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .before-after-item.animate {
+            animation: zoomIn 0.5s forwards;
+        }
+
+        .before-after-item img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .contact {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card, .before-after-item {
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+           
+            .before-after-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        
+        <nav class="container">
+            <img class="logo" src="img/logo.png" alt=""  width="150px">
+            <h1>
+                Sate Estofados</h1>
+            <ul>
+                <li><a href="#services">Serviços</a></li>
+                <li><a href="#about">Sobre Nós</a></li>
+                <li><a href="#before-after">Antes e Depois</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content container">
+                <h1>Renove Seus Estofados, Renove Sua Vida</h1>
+                <p>Transforme seu lar com a limpeza profissional que seus estofados merecem</p>
+                <a href="#" class="btn" id="orcamentoBtn">Solicite um Orçamento Grátis</a>
+            </div>
+        </section>
+
+        <section id="services" class="services container">
+            <h2>Nossos Serviços de Excelência</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>Limpeza Profunda</h3>
+                    <p>Removemos até 99% das sujeiras e manchas, devolvendo a beleza original aos seus estofados.</p>
+                </div>
+                <div class="card">
+                    <h3>Higienização Avançada</h3>
+                    <p>Eliminamos ácaros, bactérias e alérgenos, proporcionando um ambiente mais saudável para sua família.</p>
+                </div>
+                <div class="card">
+                    <h3>Proteção Duradoura</h3>
+                    <p>Aplicamos um tratamento especial que protege seus estofados contra manchas futuras.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about container">
+            <h2>Por Que Escolher a Sate Estofados?</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>Expertise Comprovada</h3>
+                    <p>Com anos de experiência, nossa equipe domina as técnicas mais avançadas de limpeza e cuidado com estofados.</p>
+                </div>
+                <div class="card">
+                    <h3>Compromisso Ecológico</h3>
+                    <p>Utilizamos produtos biodegradáveis e técnicas sustentáveis, cuidando do seu lar e do planeta.</p>
+                </div>
+                <div class="card">
+                    <h3>Satisfação Garantida</h3>
+                    <p>Se você não ficar 100% satisfeito, refazemos o serviço gratuitamente. Sua felicidade é nossa prioridade.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="before-after" class="before-after container">
+            <h2>Transformações Incríveis</h2>
+            <div class="before-after-container">
+                <div class="before-after-item">
+                    <img src="img/1.png">
+                    
+                </div>
+                <div class="before-after-item">
+                    <img src="img/2.png" alt="Depois da limpeza">
+                   
+                </div>
+            </div>
+            <div class="before-after-container">
+                <div class="before-after-item">
+                    <img src="img/3.png" alt="Antes da limpeza">
+                    
+                </div>
+                <div class="before-after-item">
+                    <img src="img/4.png" alt="Depois da limpeza">
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Transforme Seus Estofados Hoje!</h2>
+                <p>Não espere mais para ter um lar mais limpo, saudável e bonito.</p> <br>
+                <a href="https://wa.me/5585996410673" class="btn" id="contatoBtn">Agende Agora Mesmo!</a>
+            </div>
+        </section>
+    </main>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Solicite Seu Orçamento Grátis</h2>
+            <p>Estamos ansiosos para transformar seus estofados!</p>
+            <p><strong>(85) 99641-0673</strong></p>
+            <p>Ou se preferir, envie uma mensagem:</p>
+            <a href="https://wa.me/SEUNUMEROAQUI" class="btn" style="margin-top: 1rem;">Whatsapp</a>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById("modal");
+        const btn1 = document.getElementById("orcamentoBtn");
+        const btn2 = document.getElementById("contatoBtn");
+        const span = document.getElementsByClassName("close")[0];
+
+        btn1.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        btn2.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+      
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function animateOnScroll() {
+            const cards = document.querySelectorAll('.card');
+            const beforeAfterItems = document.querySelectorAll('.before-after-item');
+
+            cards.forEach(card => {
+                if (isElementInViewport(card)) {
+                    card.classList.add('animate');
+                }
+            });
+
+            beforeAfterItems.forEach(item => {
+                if (isElementInViewport(item)) {
+                    item.classList.add('animate');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
